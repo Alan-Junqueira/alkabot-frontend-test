@@ -14,7 +14,14 @@ export const NavIten = ({ text, ...props }: INavIten) => {
   return (
     <Link
       {...props}
-      className={`py-4 ease-in duration-200 cursor-pointer relative
+      className={`
+      py-4 
+      px-3
+      ease-in 
+      duration-200 
+      cursor-pointer 
+      text-gray-300
+      relative
       before:content-[''] 
       ${props.href === pathName ? 'before:w-full' : 'before:w-0'}
       before:h-0.5 
@@ -26,15 +33,14 @@ export const NavIten = ({ text, ...props }: INavIten) => {
       before:ease-in 
       before:duration-200
       before:transition-all
-      // px-3
-      text-gray-300
+      
       `}
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
         className={`absolute inset-0 ${
-          isHovered && 'bg-slate-800'
+          isHovered && 'bg-slate-800 '
         }  content-[''] z-[-1] rounded h-4/6 mt-2 ease-in duration-200`}
       ></div>
       {text}
