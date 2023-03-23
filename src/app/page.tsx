@@ -5,7 +5,7 @@ import { axiosInstance } from './services/axiosInstance'
 
 export default async function Home() {
   const [getPosts, getUsers] = await Promise.all([
-    await axiosInstance.get('/posts', {
+    await axiosInstance.get('posts', {
       headers: {
         'Cache-Control': 'no-store',
       },
