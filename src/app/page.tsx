@@ -1,7 +1,9 @@
-import Link from 'next/link'
-import { Post } from './@types/post'
-import { User } from './@types/user'
+import { Post as PostType } from './@types/post'
+import { User as UserType } from './@types/user'
 import { axiosInstance } from './services/axiosInstance'
+import { Post } from './components/Post'
+import { Suspense } from 'react'
+import Loading from './loading'
 
 export default async function Home() {
   const [getPosts, getUsers] = await Promise.all([
@@ -17,28 +19,32 @@ export default async function Home() {
     }),
   ])
 
-  const posts: Post[] = getPosts.data
-  const users: User[] = getUsers.data
+  const posts: PostType[] = await getPosts.data
+  const users: UserType[] = await getUsers.data
 
   return (
-    <div className="h-[1500px] pt-20">
-      <h1 className="text-3xl font-bold underline pt-16 bg-red-700 ">
-        Listagem de posts, com comentários disponíveis
-        {posts.map((post) => (
-          <div key={post.id}>
-            <h2>Titulo: {post.title}</h2>
-            <p>Descrição: {post.body}</p>
-            <Link
-              href={`/users/${
+    <div className="pt-20">
+      <h1 className="text-3xl font-bold underline py-16 bg-purple-500 flex items-center justify-center">
+        Listagem de posts, com comentários disponíveis, colocar banner com
+        slider
+      </h1>
+      {posts.map((post) => (
+        <>
+          <Suspense fallback={<Loading />}>
+            {/* @ts-expect-error  Acync Server Component */}
+            <Post
+              key={post.id}
+              title={post.title}
+              body={post.body}
+              userHref={`/users/${
                 users.filter((user) => user.id === post.userId)[0].id
               }`}
-              className="text-blue-700"
-            >
-              Usuário{users.filter((user) => user.id === post.userId)[0].name}
-            </Link>
-          </div>
-        ))}
-      </h1>
+              userName={users.filter((user) => user.id === post.userId)[0].name}
+              postId={post.id}
+            />
+          </Suspense>
+        </>
+      ))}
     </div>
   )
 }
