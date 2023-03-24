@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { IBM_Plex_Mono } from 'next/font/google'
 import { Header } from './components/partials/Header'
 import './globals.css'
+import { BackToTop } from './components/BackToTop'
 
 export const metadata = {
   title: 'Home',
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body className={`${ibmPlexMono.className} bg-gray-900`}>
         <Header />
+        <BackToTop />
         {children}
       </body>
     </html>
