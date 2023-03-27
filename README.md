@@ -25,8 +25,9 @@ cd alkabot-frontend-test
 npm install
 ```
 
-Second, run the development server:
+Second, run the development server || run the build server (faster than development server):
 
+* Development server
 ```bash
 npm run dev
 # or
@@ -35,7 +36,23 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* Build server
+```bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
+```
+```bash
+npm start
+# or
+yarn start
+# or
+pnpm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. (development server || build server)
 
 ## Tech Stack
 
