@@ -2,7 +2,7 @@ import { PostLoading } from './components/skeletion/PostLoading'
 
 export default function Loading() {
   return (
-    <div className="w-full h-screen pt-20 bg-gradient-to-r from-gray-200 to-gray-300 animate-pulse bg-gray-400 bg-opacity-25">
+    <div className="w-full h-full pt-20 bg-gradient-to-r from-gray-200 to-gray-300 animate-pulse bg-gray-400 bg-opacity-25">
       <div className="w-full h-[1px] bg-gradient-to-bl from-gray-200 to-gray-300 animate-pulse bg-gray-400 bg-opacity-25"></div>
 
       <div className="relative w-full h-48 md:h-64 lg:h-96 bg-gradient-to-tl from-gray-400 to-gray-300 animate-pulse bg-gray-200 bg-opacity-25">
