@@ -1,13 +1,7 @@
 import { axiosInstance } from '@/app/services/axiosInstance'
-import type { Metadata } from 'next'
 import { Post as PostType } from '@/app/@types/post'
 import { Post as PostComponent } from '@/app/components/Post'
 import { User as UserType } from '@/app/@types/user'
-
-export const metadata: Metadata = {
-  title: 'Posts',
-  description: 'Página posts',
-}
 
 type PostProps = {
   params: { id: string }
@@ -16,6 +10,7 @@ type PostProps = {
 export async function generateMetadata({ params }: PostProps) {
   return {
     title: `Post ${params.id}`,
+    description: 'Página posts',
   }
 }
 
