@@ -66,7 +66,7 @@ export default async function Post({ params }: PostProps) {
               </div>
             )
           }
-          return ''
+          return null
         })}
       </div>
     </div>
