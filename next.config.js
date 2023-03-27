@@ -8,7 +8,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['images6.alphacoders.com'],
+    domains: ['images6.alphacoders.com', 'randomuser.me'],
   },
 }
 

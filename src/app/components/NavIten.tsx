@@ -1,7 +1,7 @@
 'use client'
-import { usePathname } from 'next/navigation'
 
 import Link, { LinkProps } from 'next/link'
+import { usePathname } from 'next/navigation'
 import React, { useState } from 'react'
 
 interface INavIten extends LinkProps {
@@ -9,8 +9,12 @@ interface INavIten extends LinkProps {
 }
 
 export const NavIten = ({ text, ...props }: INavIten) => {
-  const pathName = usePathname()
   const [isHovered, setIsHovered] = useState(false)
+
+  const pathName = usePathname()
+
+  const actualPage = props.href
+
   return (
     <Link
       {...props}
@@ -23,7 +27,7 @@ export const NavIten = ({ text, ...props }: INavIten) => {
       text-gray-100
       relative
       before:content-[''] 
-      ${props.href === pathName ? 'before:w-full' : 'before:w-0'}
+      ${pathName === actualPage ? 'before:w-full' : 'before:w-0'}
       before:h-0.5 
       before:absolute 
       before:bg-purple-500

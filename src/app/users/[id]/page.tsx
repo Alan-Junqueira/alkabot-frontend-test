@@ -1,6 +1,7 @@
 import { Post as PostType } from '@/app/@types/post'
 import { User as UserType } from '@/app/@types/user'
 import { Post } from '@/app/components/Post'
+import { UserInfo } from '@/app/components/UserInfo'
 import { axiosInstance } from '@/app/services/axiosInstance'
 import { notFound } from 'next/navigation'
 
@@ -37,40 +38,23 @@ export default async function User({ params: { id } }: UserProps) {
     getUserPosts(id),
     getUser(id),
   ])
-  const {
-    name,
-    email,
-    website,
-    username,
-    phone,
-    address: { city, street, suite, zipcode },
-    company: { catchPhrase, name: companyName },
-  }: UserType = userInfo.data
+  const user: UserType = userInfo.data
 
   const userPostsResult: PostType[] = userPosts.data
 
-  if (!name) {
+  if (!user.name) {
     notFound()
   }
 
   return (
     <>
-      <div className="text-white">
-        <p>Nome: {name}</p>
-        <p>Nome: {username}</p>
-        <p>Email: {email}</p>
-        <p>Telefone: {phone}</p>
-        <p>Site: {website}</p>
-        <p>Cidade: {city}</p>
-        <p>Rua: {street}</p>
-        <p>Apt. {suite}</p>
-        <p>Zip Code: {zipcode}</p>
-        <p>Bordão: {catchPhrase}</p>
-        <p>Trabalho: {companyName}</p>
-      </div>
-      <div>
+      <UserInfo user={userInfo.data} />
+      <h2 className="text-center bg-purple-800 mt-8 py-4 text-gray-100 border-2 border-gray-100 border-solid text-xl">
+        {user.name} Posts
+      </h2>
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 sm:px-4 lg:px-8">
         {userPostsResult.map((post) => (
-          <div key={post.id}>
+          <div key={post.id} className="mt-4">
             {/* @ts-expect-error  Acync Server Component */}
             <Post body={post.body} postId={post.id} title={post.title} />
           </div>

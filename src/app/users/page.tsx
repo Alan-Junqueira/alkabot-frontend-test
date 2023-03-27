@@ -12,8 +12,7 @@ export default async function Users() {
   const users: UserType[] = getUsers.data
 
   return (
-    <div>
-      <h1>Users</h1>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
       {users.map((user) => (
         <User
           key={user.id}

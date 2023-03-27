@@ -13,6 +13,7 @@ export const Header = () => {
       </Link>
       <nav className="flex items-center gap-6">
         <NavIten text="Início" href={'/'} />
+        <NavIten text="Posts" href={'/posts'} />
         <NavIten text="Usuários" href={'/users'} />
       </nav>
       <div></div>

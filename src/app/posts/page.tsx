@@ -1,35 +1,25 @@
 import { Suspense } from 'react'
-import Loading from './loading'
+import Loading from '../loading'
+import { Post } from '../components/Post'
 
-import { axiosInstance } from './services/axiosInstance'
+import { axiosInstance } from '../services/axiosInstance'
+import { Post as PostType } from '../@types/post'
+import { User as UserType } from '../@types/user'
 
-import { Post } from './components/Post'
+// export const revalidate = 3600
 
-import { Post as PostType } from './@types/post'
-import { User as UserType } from './@types/user'
-import { Banner } from './components/Banner'
-
-export default async function Home() {
+export default async function Posts() {
   const [getPosts, getUsers] = await Promise.all([
-    axiosInstance.get('posts', {
-      headers: {
-        'Cache-Control': 'no-store',
-      },
-    }),
-    axiosInstance.get('users', {
-      headers: {
-        'Cache-Control': 'no-store',
-      },
-    }),
+    axiosInstance.get('posts'),
+    axiosInstance.get('users'),
   ])
 
-  const posts: PostType[] = await getPosts.data
-  const users: UserType[] = await getUsers.data
+  const posts: PostType[] = getPosts.data
+  const users: UserType[] = getUsers.data
 
   return (
     <div className="pt-20">
-      <Banner />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 mt-9 sm:px-4 lg:px-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 pt-9 sm:px-4 lg:px-8">
         {posts.map((post) => (
           <>
             <Suspense fallback={<Loading />}>

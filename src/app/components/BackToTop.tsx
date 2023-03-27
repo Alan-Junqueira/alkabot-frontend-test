@@ -25,7 +25,7 @@ export const BackToTop = () => {
       {isVisible && (
         <button
           onClick={handleClick}
-          className="flex justify-center items-center fixed bottom-6 right-6 w-12 h-12 rounded-full bg-purple-800 z-20 border-2 border-solid border-purple-100 hover:bg-purple-900 hover:border-gray-900 transition-all duration-300 ease-in-out"
+          className="flex justify-center items-center fixed bottom-6 right-6 w-12 h-12 rounded-full bg-purple-800 z-20 border-2 border-solid border-purple-100 hover:bg-purple-900 hover:border-purple-300 transition-all duration-300 ease-in-out"
         >
           <DoubleArrowUpIcon className="text-gray-100" />
         </button>
