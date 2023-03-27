@@ -5,20 +5,22 @@ import { Post as PostComponent } from '@/app/components/Post'
 import { User as UserType } from '@/app/@types/user'
 
 export const metadata: Metadata = {
-  title: 'User',
-  description: 'Página inicial',
+  title: 'Posts',
+  description: 'Página posts',
 }
 
 type PostProps = {
   params: { id: string }
 }
 
+export async function generateMetadata({ params }: PostProps) {
+  return {
+    title: `Post ${params.id}`,
+  }
+}
+
 export default async function Post({ params }: PostProps) {
   const { id } = params
-  // const [getPost, getUser] = await Promise.all([
-  //   axiosInstance.get(`/posts/${id}`),
-  //   axios.get(`users/${id}`),
-  // ])
 
   const getPost = await axiosInstance.get(`/posts/${id}`)
   const post: PostType = getPost.data
@@ -33,7 +35,7 @@ export default async function Post({ params }: PostProps) {
 
   console.log(userPosts)
   return (
-    <div className="pt-20">
+    <div>
       {/* @ts-expect-error  Acync Server Component */}
       <PostComponent
         body={post.body}

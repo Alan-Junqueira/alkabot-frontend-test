@@ -2,10 +2,10 @@ import { ReactNode } from 'react'
 
 export const metadata = {
   title: {
-    default: 'Users',
-    template: '%s | Users',
+    default: 'Posts',
+    template: '%s | Posts',
   },
-  description: 'Users',
+  description: 'Posts',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
